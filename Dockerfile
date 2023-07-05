@@ -1,2 +1,4 @@
-FROM tomcat:8.0.20-jre8
-COPY target/Example-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/sample.war
+FROM tomcat:9.0-alpine
+COPY target/*.war /usr/local/tomcat/webapps/SampleWebApp.war
+EXPOSE 8080
+CMD ["bin/catalina.sh", "run"]
