@@ -2,14 +2,17 @@
 
 From Code to Kubernetes Deployment
 
+![image](https://github.com/Sivaprakash-pk/Java-web-app/assets/118121843/ea009c04-31b4-41bf-bc03-3fea065ee2f8)
+
+
 Introduction:
-In today's software development landscape, Continuous Integration and Continuous Deployment (CI/CD) play a vital role in delivering high-quality applications with speed and efficiency. In this blog post, we will explore an end-to-end CI/CD pipeline for a Java web application, starting from code pushed to GitHub to the deployment of the application on Kubernetes using Argo CD. We will cover each step, including code build, code scanning, artifact management, Docker image creation and publishing, and finally, the deployment process. So, let's dive in!
+In today's software development landscape, Continuous Integration and Continuous Deployment (CI/CD) play a vital role in delivering high-quality applications with speed and efficiency. In this Project, we will explore an end-to-end CI/CD pipeline for a Java web application, starting from code pushed to GitHub to the deployment of the application on Kubernetes using Argo CD. We will cover each step, including code build, code scanning, artifact management, Docker image creation and publishing, and finally, the deployment process.
 
 1. Code Pushed to GitHub:
 The journey begins with the developer pushing the Java web application code to a Git repository hosted on GitHub. This step marks the initiation of the CI/CD pipeline.
 
 2. Jenkins Scripted Pipeline: Build and Test
-Once the code is pushed to GitHub, Jenkins comes into play. We leverage a Jenkins scripted pipeline to automate the build process. The pipeline triggers upon code changes and utilizes Maven as the build tool. Jenkins fetches the code from GitHub, compiles it, runs tests, and generates the application artifact.
+Once the code is pushed to GitHub, Jenkins comes into play. We leverage a Jenkins scripted pipeline to automate the build process. The pipeline triggers code changes and utilizes Maven as the build tool. Jenkins fetches the code from GitHub, compiles it, runs tests, and generates the application artifact.
 
 3. Code Scan with SonarQube:
 To ensure code quality, we integrate SonarQube into our CI/CD pipeline. The Jenkins pipeline runs static code analysis using SonarQube, which examines the codebase for potential issues, vulnerabilities, and code smells. It provides valuable feedback to the development team, allowing them to address any identified problems.
@@ -30,4 +33,4 @@ In a Kubernetes environment, we leverage Argo CD for continuous deployment. The 
 Argo CD continuously monitors the GitHub repository for changes. When a change is detected, Argo CD synchronizes the Kubernetes cluster with the desired state described in the deployment configuration. It updates the existing deployment or creates new deployment pods as necessary.
 
 Conclusion:
-By following this end-to-end CI/CD pipeline, we have achieved automated build processes, code quality checks, artifact management, Docker image creation and publishing, and seamless deployment on a Kubernetes cluster using Argo CD. This comprehensive CI/CD pipeline enables developers to focus on writing code while ensuring quick, reliable, and quality-driven software releases.
+By following this end-to-end CI/CD pipeline, we have achieved automated build processes, code quality checks, artifact management, Docker image creation and publishing, and seamless deployment on a Kubernetes cluster using Argo CD.
