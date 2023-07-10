@@ -1,80 +1,33 @@
-# Sample war application using maven 
+# Java Web Application - CI/CD End-to-End Project 
 
-1. Navigate to the directory and run the below maven command to build the war file as
-```
-$mvn clean verify
+From Code to Kubernetes Deployment
 
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building Example 0.0.1-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ Example ---
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ Example ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/prem/Desktop/codebase/java-maven-sample-war/src/main/resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ Example ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to /Users/prem/Desktop/codebase/java-maven-sample-war/target/classes
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ Example ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/prem/Desktop/codebase/java-maven-sample-war/src/test/resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ Example ---
-[INFO] No sources to compile
-[INFO] 
-[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ Example ---
-[INFO] No tests to run.
-[INFO] 
-[INFO] --- maven-war-plugin:2.5:war (default-war) @ Example ---
-[INFO] Packaging webapp
-[INFO] Assembling webapp [Example] in [/Users/prem/Desktop/codebase/java-maven-sample-war/target/Example-0.0.1-SNAPSHOT]
-[INFO] Processing war project
-[INFO] Copying webapp resources [/Users/prem/Desktop/codebase/java-maven-sample-war/src/main/webapp]
-[INFO] Webapp assembled in [69 msecs]
-[INFO] Building war: /Users/prem/Desktop/codebase/java-maven-sample-war/target/Example-0.0.1-SNAPSHOT.war
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 3.698 s
-[INFO] Finished at: 2018-10-31T20:12:34+05:30
-[INFO] Final Memory: 16M/139M
-[INFO] ------------------------------------------------------------------------
-```
-Once the above is completed the file Example-0.0.1-SNAPSHOT.war will be created under target/ folder
+Introduction:
+In today's software development landscape, Continuous Integration and Continuous Deployment (CI/CD) play a vital role in delivering high-quality applications with speed and efficiency. In this blog post, we will explore an end-to-end CI/CD pipeline for a Java web application, starting from code pushed to GitHub to the deployment of the application on Kubernetes using Argo CD. We will cover each step, including code build, code scanning, artifact management, Docker image creation and publishing, and finally, the deployment process. So, let's dive in!
 
-2. Now its time for docker, first build the docker image as below command, make sure you are running from the directory which have Dockerfile, otherwise add the dockerfile with path and name in the command too
-```
-$docker build -t tomcat-sample:1.0 .
+1. Code Pushed to GitHub:
+The journey begins with the developer pushing the Java web application code to a Git repository hosted on GitHub. This step marks the initiation of the CI/CD pipeline.
 
-Sending build context to Docker daemon  271.9kB
-Step 1/2 : FROM tomcat:8.0.20-jre8
- ---> e88a065848be
-Step 2/2 : COPY target/Example-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/sample.war
- ---> 68da124851e4
-Successfully built 68da124851e4
-Successfully tagged tomcat-sample:1.0
-```
-3. Start the above created image with the below docker command
-```
-$docker run --name tomcat -it --rm -d -p 8080:8080 tomcat-sample:1.0
-```
-4. Navigate to http://localhost:8080/sample/ to check the started docker image with above created war file.
+2. Jenkins Scripted Pipeline: Build and Test
+Once the code is pushed to GitHub, Jenkins comes into play. We leverage a Jenkins scripted pipeline to automate the build process. The pipeline triggers upon code changes and utilizes Maven as the build tool. Jenkins fetches the code from GitHub, compiles it, runs tests, and generates the application artifact.
 
-#### The java code under src/main is of no use, its just as placeholder right now.
+3. Code Scan with SonarQube:
+To ensure code quality, we integrate SonarQube into our CI/CD pipeline. The Jenkins pipeline runs static code analysis using SonarQube, which examines the codebase for potential issues, vulnerabilities, and code smells. It provides valuable feedback to the development team, allowing them to address any identified problems.
 
-## You can verify the running docker with below command's
-```
-$docker ps -l
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
-bfd111dae312        tomcat-sample:1.0   "catalina.sh run"   5 minutes ago       Up 5 minutes        0.0.0.0:8080->8080/tcp   tomcat
+4. Artifact Management with Nexus:
+Next, we move on to artifact management using Nexus Repository Manager. Jenkins securely transfers the built artifact to the Nexus repository. Nexus serves as a central repository for storing and managing application artifacts, making them readily accessible for subsequent stages of the pipeline.
 
+5. Docker Image Build using Dockerfile:
+To containerize our Java web application, we employ Docker. A Dockerfile, residing in the project repository, defines the instructions to build the Docker image. Jenkins pulls the code, builds the Docker image, and tags it appropriately. This step ensures consistency and reproducibility across different environments.
 
-$docker exec bfd111dae312 ps -eaf | grep -i tomcat
-root         1     0  1 14:43 pts/0    00:00:05 /usr/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/tomcat/endorsed -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/temp org.apache.catalina.startup.Bootstrap start
+6. Docker Image Pushed to DockerHub:
+After the Docker image is built, Jenkins pushes it to a Docker registry, such as DockerHub. The registry acts as a centralized location to store and distribute Docker images. By pushing the image to DockerHub, it becomes easily accessible for subsequent deployment steps.
 
-```
+7. Kubernetes Deployment Code Pushed to GitHub for Argo CD:
+In a Kubernetes environment, we leverage Argo CD for continuous deployment. The deployment configuration, defined as YAML files, resides in a GitHub repository. Upon code changes, the updated latest Docker Image Tag deployment configuration is pushed to the GitHub repository.
+
+8. Argo CD Updates Kubernetes Deployment:
+Argo CD continuously monitors the GitHub repository for changes. When a change is detected, Argo CD synchronizes the Kubernetes cluster with the desired state described in the deployment configuration. It updates the existing deployment or creates new deployment pods as necessary.
+
+Conclusion:
+By following this end-to-end CI/CD pipeline, we have achieved automated build processes, code quality checks, artifact management, Docker image creation and publishing, and seamless deployment on a Kubernetes cluster using Argo CD. This comprehensive CI/CD pipeline enables developers to focus on writing code while ensuring quick, reliable, and quality-driven software releases.
