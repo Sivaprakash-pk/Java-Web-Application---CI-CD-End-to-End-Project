@@ -14,12 +14,12 @@
       <li>1. Upload code to Github from Local Git repository </li>
       <li>2. Jenkins Pipeline Job created </li>
       <li>3. Using Webhook Jenkins trigger option whenever commit happens on Github Jenkins job will start </li>
-      <li>4. Using Jenkins job code built by Maven </li>
-      <li>5. Using Jenkins job code quality checked by Sonarqube Code Scanner </li>
-      <li>6. Using Jenkins job Artifacts copied into Nexus Artifact Repository Manager </li>
-      <li>7. Using Jenkins job Docker image build with Dockerfile and Docker imaged pushed into Dockerhub</li>
-      <li>8. Using Jenkins job Argo CD gets a New Docker image build tag and uploaded into Argo CD Repository </li>
-      <li>9. Using Jenkins job Once Argo CD is Updated, the Argo CD job Deployment Code and Run the Container Pods on Amazon EC2 using SSH Agent</li>
+      <li>4. Code built by Maven </li>
+      <li>5. Code quality checked by Sonarqube Code Scanner </li>
+      <li>6. Artifacts copied into Nexus Artifact Repository Manager </li>
+      <li>7. Docker image built using Dockerfile and Docker image pushed into Dockerhub</li>
+      <li>8. New Docker image build tag uploaded into Kubernetes code Github Repository</li>
+      <li>9. Once the Argo CD job is Updated with a new yaml code, the Argo CD job Deployment Code and Run the Container Pods on Amazon Kubernetes cluster</li>
     </ul>
 
 
