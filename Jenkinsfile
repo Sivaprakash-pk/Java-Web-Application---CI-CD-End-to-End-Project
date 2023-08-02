@@ -20,7 +20,7 @@ node
         }
     }
     stage('Upload build artifacts to nexus repo'){
-        nexusArtifactUploader artifacts: [[artifactId: 'Example', classifier: '', file: 'target/Example-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'Nexus-Credential', groupId: 'in.java-siva', nexusUrl: '65.1.65.172:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demo-java', version: '1.0-SNAPSHOT'
+        nexusArtifactUploader artifacts: [[artifactId: 'Example', classifier: '', file: 'target/Example-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'Nexus-Credential', groupId: 'in.java-siva', nexusUrl: '13.233.237.234:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'demo-java', version: '1.0-SNAPSHOT'
     }
     stage('Build Docker Image'){
         // Define the Docker image name and tag using the parameterized values
