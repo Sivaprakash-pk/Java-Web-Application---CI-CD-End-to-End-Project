@@ -2,7 +2,7 @@
 
 From Code to Kubernetes Deployment
 
-![image](https://github.com/Sivaprakash-pk/Java-web-app/assets/118121843/ea009c04-31b4-41bf-bc03-3fea065ee2f8)
+![p0](https://github.com/Sivaprakash-pk/Java-Web-Application---CI-CD-End-to-End-Project/assets/118121843/e8e3cfae-cb90-4abe-a9b7-03f497a96c4b)
 
 
 Introduction:
