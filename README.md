@@ -1,11 +1,11 @@
 # Java Web Application - CI/CD End-to-End Project 
 
-From Code to Kubernetes Deployment
+### From Code to Kubernetes Deployment
 
 ![p0](https://github.com/Sivaprakash-pk/Java-Web-Application---CI-CD-End-to-End-Project/assets/118121843/e8e3cfae-cb90-4abe-a9b7-03f497a96c4b)
 
 
-Introduction:
+## Introduction:
 In today's software development landscape, Continuous Integration and Continuous Deployment (CI/CD) play a vital role in delivering high-quality applications with speed and efficiency. In this Project, we will explore an end-to-end CI/CD pipeline for a Java web application, starting from code pushed to GitHub to the deployment of the application on Kubernetes using Argo CD. We will cover each step, including code build, code scanning, artifact management, Docker image creation and publishing, and finally, the deployment process.
 
 1. Code Pushed to GitHub:
@@ -32,5 +32,9 @@ In a Kubernetes environment, we leverage Argo CD for continuous deployment. The 
 8. Argo CD Updates Kubernetes Deployment:
 Argo CD continuously monitors the GitHub repository for changes. When a change is detected, Argo CD synchronizes the Kubernetes cluster with the desired state described in the deployment configuration. It updates the existing deployment or creates new deployment pods as necessary.
 
-Conclusion:
+## For a detailed explanation of the project and its benefits, check out our blog post: 
+https://sivaprakash-s.hashnode.dev/java-web-application-cicd-end-to-end-devops-project
+
+## Conclusion:
 By following this end-to-end CI/CD pipeline, we have achieved automated build processes, code quality checks, artifact management, Docker image creation and publishing, and seamless deployment on a Kubernetes cluster using Argo CD.
+
